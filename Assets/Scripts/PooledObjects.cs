@@ -3,6 +3,10 @@ using UnityEngine;
 
 public class PooledObjects : MonoBehaviour
 {
+    // Variables for debug
+    private int _totalSpawnedObj = 0;
+    private int _totalPooledObj = 0;
+
     [SerializeField] private GameObject _objectToPool;
     private List<GameObject> _pool = new List<GameObject>();
 
@@ -14,12 +18,14 @@ public class PooledObjects : MonoBehaviour
             {
                 pool[i].transform.position = location;
                 pool[i].gameObject.SetActive(true);
+                _totalPooledObj++;
                 return pool[i];
             }
         }
 
         GameObject objectToSpawn = Instantiate(prefab, location, Quaternion.identity);
         pool.Add(objectToSpawn);
+        _totalSpawnedObj++;
         return objectToSpawn;
     }
 
