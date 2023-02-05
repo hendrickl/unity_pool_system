@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,5 +21,10 @@ public class PooledObjects : MonoBehaviour
         GameObject objectToSpawn = Instantiate(prefab, location, Quaternion.identity);
         pool.Add(objectToSpawn);
         return objectToSpawn;
+    }
+
+    public GameObject GetObjectFromPool(Vector3 location)
+    {
+        return SpawnObjectFromPool(_objectToPool, _pool, location);
     }
 }
